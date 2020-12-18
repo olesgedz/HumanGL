@@ -1,0 +1,149 @@
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lminta <lminta@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2019/11/29 21:06:38 by lminta           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+NAME = ft_vox
+FLAGS = -g -std=c++17# -Wall -Wextra -Werror
+CC = clang++
+
+INCLUDES = -I./libs/glfw/include/ -I./libs/glad/include/ -I./include/ \
+ -I./libs/stb_image/ -I./libs/glm/ -I./libs/imgui/ -I./libs/imgui/examples/
+
+HEADERS_DIRECTORY = include/ 
+HEADERS_LIST = 
+HEADERS = include/shader.h
+
+DIRECTORY =  $(shell pwd)
+GLAD_DIRECTORY := $(DIRECTORY)/libs/glad/
+GLAD := $(GLAD_DIRECTORY)libglad.a
+GLFW_DIRECTORY := $(DIRECTORY)/libs/glfw/
+GLFW := $(GLFW_DIRECTORY)src/libglfw3.a
+IMGUI_DIRECTORY := $(DIRECTORY)/libs/imgui
+# IMGUI_SRCS := 
+# IMGUI := $(patsubst %.cpp, %.o, $(IMGUI_SRCS))
+SRCS_DIRECTORY = ./src/
+ SRCS_LIST = $(wildcard ./src/*.cpp)# main.cpp \
+			# stb_image_helper.cpp\
+			# $(IMGUI_DIRECTORY)/examples/imgui_impl_glfw.cpp \
+			# $(IMGUI_DIRECTORY)/examples/imgui_impl_opengl3.cpp \
+			# $(IMGUI_DIRECTORY)/imgui.cpp \
+			# $(IMGUI_DIRECTORY)/imgui_draw.cpp \
+			# $(IMGUI_DIRECTORY)/imgui_widgets.cpp
+
+OBJS_DIRECTORY = objects/
+OBJS_LIST = $(patsubst %.cpp, %.o, $(SRCS_LIST))
+OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
+DEP = $(OBJS:%.o=%.d)
+SDL_LIBS = $(addprefix $(DIRECTORY)/lib/, $(LIB_LIST))
+MAKES = makes
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+CLEAR_LINE	:= \033[2K
+BEGIN_LINE	:= \033[A
+COL_END		:= \033[0m
+COL_RED		:= \033[1;31m
+COL_GREEN	:= \033[1;32m
+COL_YELLOW	:= \033[1;33m
+COL_BLUE	:= \033[1;34m
+COL_VIOLET	:= \033[1;35m
+COL_CYAN	:= \033[1;36m
+COL_WHITE	:= \033[1;37m
+
+TOTAL_FILES := $(shell echo $(SRCS_LIST) | wc -w | sed -e 's/ //g')
+CURRENT_FILES = $(shell find $(DIRECTORY)/objects/ -type f 2> /dev/null | wc -l | sed -e 's/ //g')
+START_FILES = $(shell find $(DIRECTORY)/objects/ -type f 2> /dev/null | wc -l | sed -e 's/ //g')
+START_FILES_N := $(START_FILES)
+DELTA		=	$$(echo "$$(tput cols)-47"|bc)
+NB		=	$(words $(SRCS_LIST))
+INDEX		=	0
+
+ifeq ($(OS),Windows_NT)
+	detected_OS := Windows
+else
+	detected_OS := $(shell uname)
+endif
+
+ifeq ($(detected_OS),Linux)
+	LIBRARIES += -L./libs/glad/ -lglad -ldl  -lGL -L./libs/glfw/src/ -lglfw3 \
+	-lXrandr -lXrender -lXi -lXfixes -lXxf86vm -lXext -lX11 -lpthread -lxcb -lXau -lXdmcp
+endif
+ifeq ($(detected_OS),Darwin)  
+	LIBRARIES = -L./libs/glad/ -lglad -L./libs/glfw/src/ -lglfw3      # Mac OS X
+	LIBRARIES += -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+endif
+
+
+#@echo "$(CLEAR_LINE)[`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES) `%] $(COL_BLUE)[$(NAME)] $(COL_GREEN)Finished compilation. Output file : $(COL_VIOLET)$(PWD)/$(NAME)$(COL_END)"
+
+all: $(MAKES) $(NAME)
+
+
+$(NAME): $(OBJS) $(HEADERS)  $(GLFW)
+	@$(CC) $(FLAGS)  $(INCLUDES) $(OBJS) -o $(NAME) $(LIBRARIES)
+	@strip -x $@
+	@$(eval INDEX=$(shell echo $$(($(INDEX)+1))))
+	@printf "\r\033[2K %10.10s : %2d%% \033[48;5;%dm%*s\033[0m%*s\033[48;5;255m \033[0m \033[38;5;11m %*.*s\033[0m\033[K" $(NAME) 100 $(COLOR) 20 "" 100 "" $(DELTA) $(DELTA) "$@"
+$(MAKES):
+	@$(MAKE) -sC $(GLAD_DIRECTORY)
+
+$(OBJS_DIRECTORY):
+	@mkdir -p $(OBJS_DIRECTORY)
+
+# Include all .d files
+-include $(DEP)
+
+# Build target for every single object file.
+# The potential dependency on header files is covered
+# by calling `-include $(DEP)`.
+# $(OBJS_DIRECTORY)%.o : $(SRCS_DIRECTORY)%.cpp $(HEADERS)
+# 	@mkdir -p $(@D)
+# 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+# 	@echo "$(CLEAR_LINE)[`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES) `%] $(COL_BLUE)[$(NAME)] $(COL_GREEN)Compiling file [$(COL_VIOLET)$<$(COL_GREEN)].($(CURRENT_FILES) / $(TOTAL_FILES))$(COL_END)$(BEGIN_LINE)"
+# The -MMD flags additionaly creates a .d file with
+    # the same name as the .o file.
+	#@echo "$(CLEAR_LINE)[`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES) `%] $(COL_BLUE)[$(NAME)] $(COL_GREEN)Compiling file [$(COL_VIOLET)$<$(COL_GREEN)].($(CURRENT_FILES) / $(TOTAL_FILES))$(COL_END)$(BEGIN_LINE)"
+
+$(OBJS_DIRECTORY)%.o : %.cpp $(HEADERS)
+	@mkdir -p $(@D)
+	@$(eval DONE=$(shell echo $$(($(INDEX)*20/$(NB)))))
+	@$(eval PERCENT=$(shell echo $$(($(INDEX)*100/$(NB)))))
+	@$(eval COLOR=$(shell echo $$((12))))
+	@$(eval TO_DO=$(shell echo $$((20-$(INDEX)*20/$(NB)))))
+	@$(CC) $(FLAGS) -MMD -c $(INCLUDES) $< -o $@
+	@printf "\033[2K \r %10.10s : %2d%% \033[48;5;%dm%*s\033[0m%*s\033[48;5;255m \033[0m \033[38;5;11m %*.*s\033[0m\033[K" $(NAME) $(PERCENT) $(COLOR) $(DONE) "" $(TO_DO) "" $(DELTA) $(DELTA) "$@"
+	@$(eval INDEX=$(shell echo $$(($(INDEX)+1))))
+
+$(GLFW):
+	@cd libs/glfw/ && cmake . && make glfw; 
+
+.PHONY: clean fclean re
+
+sub:
+	git submodule update --init --recursive;
+this:
+	@rm -rf $(OBJS_DIRECTORY) && make;
+
+clean:
+	@rm -rf $(OBJS_DIRECTORY)
+	@echo "$(NAME): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+
+fclean: clean
+	@rm -f $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
