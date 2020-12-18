@@ -37,20 +37,21 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libs/assimp/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/..)
 set(INCLUDES
     include/
-    include/States/
-    libs/glad/include/
+    libs/glad/include/glad/
+        libs/glad/include/
     libs/glfw/include/
     libs/stb_image/
-    libs/glm/ libs/assimp/include/ libs/assimp/include/assimp/ src/ src/test/)
+    libs/glm/  src/)
 set(SOURCEFILES
-    main.cpp
-    libs/glad/src/glad.c src/test/Mesh.hpp src/test/Shader.hpp src/test/Model.cpp src/test/Model.hpp libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/test/Camera.cpp src/test/Camera.h)
+    src/main.cpp
+    libs/glad/src/glad.c libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/camera.cpp src/collision.cpp src/controls.cpp 
+    src/engine.cpp src/Entity.cpp src/Events.cpp src/Model.cpp src/Render.cpp src/replace.cpp src/Shader.cpp src/skybox.cpp
+        )
 include_directories(${INCLUDES})
 add_executable(${PROJECT_NAME} ${SOURCEFILES})
 link_directories(${INCLUDES}
     //${CMAKE_CURRENT_SOURCE_DIR}/libs/glad
     ${CMAKE_CURRENT_SOURCE_DIR}/libs/glfw
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/assimp
     ${CMAKE_CURRENT_SOURCE_DIR}/libs/glfw/src
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/win/)
 
@@ -62,7 +63,7 @@ link_directories(${INCLUDES}
 #message(STATUS "Found ASSIMP in ${ASSIMP_INCLUDE_DIR}")
 
 if (WIN32)
-    target_link_libraries(${PROJECT_NAME} glfw assimp)
+    target_link_libraries(${PROJECT_NAME} glfw )
 elseif(APPLE)
     find_library(COCOA_Framework Cocoa)
     find_library(OpenGL_Framework OpenGL)
@@ -70,22 +71,11 @@ elseif(APPLE)
     find_library(CoreVideo_Framework CoreVideo)
 
     target_link_libraries(${PROJECT_NAME}
-            glfw assimp
+            glfw 
             ${COCOA_Framework} ${OpenGL_Framework}
             ${IOKit_Framework} ${CoreVideo_Framework})
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME}
-            glfw assimp
+            glfw 
             GL X11 pthread dl)
 endif()
-    #https://ps-group.github.io/cxx/cmake_cheatsheet
-#https://habr.com/ru/post/461817/
-# add_library(hello hello.cxx)
-
-# if(WIN32)
-#   target_sources(hello PRIVATE system_win.cxx)
-# elseif(UNIX)
-#   target_sources(hello PRIVATE system_posix.cxx)
-# else()
-#   target_sources(hello PRIVATE system_generic.cxx)
-# endif()

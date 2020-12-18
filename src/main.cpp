@@ -1,24 +1,16 @@
-#include "vox.hpp"
-#include "shader.h"
-#include "Camera.hpp"
-#include "Display.hpp"
-using namespace std;
-#include "openglInputs.hpp"
-#include "Application.hpp"
+#include "42run.h"
+#include <time.h>
 
-
-
-#if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
-#pragma comment(lib, "legacy_stdio_definitions")
-#endif
-
-using namespace glm;
-
-int main(int argc, char **argv)
+int		main(void)
 {
-
-  Display::init();
-  Application app;
-  app.runMainGameLoop();
+	Engine	engine;
+	
+	srand(time(NULL));
+	engine.init_engine(WIDTH, HEIGHT);
+	engine.run_engine();
+	delete(engine.state->current_plat);
+	delete(engine.state->next_plat);
+	delete(engine.state->obst1);
+	delete(engine.state->obst2);
 	return 0;
 }
