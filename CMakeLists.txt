@@ -44,7 +44,7 @@ set(INCLUDES
     libs/glm/ libs/assimp/include/ libs/assimp/include/assimp/ src/ src/test/)
 set(SOURCEFILES
     main.cpp
-    libs/glad/src/glad.c src/test/Mesh.hpp src/test/Shader.hpp src/test/Model.cpp src/test/Model.hpp libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp)
+    libs/glad/src/glad.c src/test/Mesh.hpp src/test/Shader.hpp src/test/Model.cpp src/test/Model.hpp libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/test/Camera.cpp src/test/Camera.h)
 include_directories(${INCLUDES})
 add_executable(${PROJECT_NAME} ${SOURCEFILES})
 link_directories(${INCLUDES}
@@ -70,12 +70,12 @@ elseif(APPLE)
     find_library(CoreVideo_Framework CoreVideo)
 
     target_link_libraries(${PROJECT_NAME}
-            glfw
+            glfw assimp
             ${COCOA_Framework} ${OpenGL_Framework}
             ${IOKit_Framework} ${CoreVideo_Framework})
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME}
-            glfw
+            glfw assimp
             GL X11 pthread dl)
 endif()
     #https://ps-group.github.io/cxx/cmake_cheatsheet
