@@ -8,8 +8,8 @@ project(${PROJECT_NAME})
 add_compile_options(
     # -Werror
 	-g
-    -Wall
-        -Wextra
+#    -Wall
+#        -Wextra
     # -Wpedantic
 
     # -Wcast-align
@@ -33,7 +33,7 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 #add_subdirectory(./libs/glfw/)
  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libs/glfw/)
-
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libs/assimp/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/..)
 set(INCLUDES
     include/
@@ -41,20 +41,28 @@ set(INCLUDES
     libs/glad/include/
     libs/glfw/include/
     libs/stb_image/
-    libs/glm/ src/)
+    libs/glm/ libs/assimp/include/ libs/assimp/include/assimp/ src/ src/test/)
 set(SOURCEFILES
     main.cpp
-    libs/glad/src/glad.c)
+    libs/glad/src/glad.c src/test/Mesh.hpp src/test/Shader.hpp src/test/Model.cpp src/test/Model.hpp libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp)
 include_directories(${INCLUDES})
 add_executable(${PROJECT_NAME} ${SOURCEFILES})
 link_directories(${INCLUDES}
     //${CMAKE_CURRENT_SOURCE_DIR}/libs/glad
     ${CMAKE_CURRENT_SOURCE_DIR}/libs/glfw
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/assimp
     ${CMAKE_CURRENT_SOURCE_DIR}/libs/glfw/src
         ${CMAKE_CURRENT_SOURCE_DIR}/libs/win/)
 
+#find_package(GLM REQUIRED)
+#message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
+#find_package(GLFW3 REQUIRED)
+#message(STATUS "Found GLFW3 in ${GLFW3_INCLUDE_DIR}")
+#find_package(ASSIMP REQUIRED)
+#message(STATUS "Found ASSIMP in ${ASSIMP_INCLUDE_DIR}")
+
 if (WIN32)
-    target_link_libraries(${PROJECT_NAME} glfw)
+    target_link_libraries(${PROJECT_NAME} glfw assimp)
 elseif(APPLE)
     find_library(COCOA_Framework Cocoa)
     find_library(OpenGL_Framework OpenGL)
