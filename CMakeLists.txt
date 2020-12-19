@@ -44,9 +44,9 @@ set(INCLUDES
     libs/glm/  src/)
 set(SOURCEFILES
     src/main.cpp
-    libs/glad/src/glad.c libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/camera.cpp src/collision.cpp src/controls.cpp 
-    src/engine.cpp src/Entity.cpp src/Events.cpp src/Model.cpp src/Render.cpp src/replace.cpp src/Shader.cpp src/skybox.cpp
-        )
+    libs/glad/src/glad.c libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/camera.cpp src/maths.cpp
+    src/engine.cpp src/Entity.cpp src/Events.cpp src/Model.cpp src/Render.cpp src/Shader.cpp src/skybox.cpp src/sandbox.cpp src/scene.cpp
+        src/maths.cpp src/maths.h)
 include_directories(${INCLUDES})
 add_executable(${PROJECT_NAME} ${SOURCEFILES})
 link_directories(${INCLUDES}

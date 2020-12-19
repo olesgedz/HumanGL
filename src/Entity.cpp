@@ -8,6 +8,11 @@ Entity::Entity()
 	angle[1] = 0.0f;
 	angle[2] = 0.0f;
 	scale(1.0f, 1.0f, 1.0f);
+	set_color(1.0f, 1.0f, 1.0f);
+}
+
+void	Entity::update()
+{
 
 }
 
@@ -49,4 +54,11 @@ void Entity::scale(float x, float y, float z)
 	e_scale[0] = x;
 	e_scale[1] = y;
 	e_scale[2] = z;
+}
+
+void Entity::set_color(float r, float g, float b)
+{
+    color.x = r;
+    color.y = g;
+    color.z = b;
 }
