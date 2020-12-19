@@ -7,13 +7,13 @@
 class Camera
 {
 public:
-	glm::vec3	pos;
-	glm::vec3	front;
-	glm::vec3	target;
-	glm::vec3	direction;
-	glm::vec3	right;
-	glm::vec3	up;
-	glm::mat4	view;
+	vec3	pos;
+	vec3	front;
+	vec3	target;
+	vec3	direction;
+	vec3	right;
+	vec3	up;
+	mat4	view;
 	float		speed;
 	float		yaw;
 	float		pitch;

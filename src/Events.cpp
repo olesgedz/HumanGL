@@ -2,6 +2,12 @@
 #include <GLFW/glfw3.h>
 #include "events.h"
 
+Controls::Controls()
+{
+    for (int i = 0; i < 1024; ++i)
+        keys[i] = false;
+}
+
 void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
 	Controls	*con;

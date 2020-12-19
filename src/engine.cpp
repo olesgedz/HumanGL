@@ -81,13 +81,13 @@ void Engine::run_engine()
 
 		cam.speed = 8.0f * delta_time;
 		if (controls.keys[GLFW_KEY_W])
-			cam.pos += cam.speed * cam.front;
+			cam.pos = cam.pos + cam.speed * cam.front;
 		if (controls.keys[GLFW_KEY_S])
-			cam.pos -= cam.speed * cam.front;
+			cam.pos = cam.pos - cam.speed * cam.front;
 		if (controls.keys[GLFW_KEY_A])
-			cam.pos -= cam.speed * glm::normalize(glm::cross(cam.front, cam.up));
+			cam.pos = cam.pos - cam.speed * normalize(cross(cam.front, cam.up));
 		if (controls.keys[GLFW_KEY_D])
-			cam.pos += cam.speed * glm::normalize(glm::cross(cam.front, cam.up));
+			cam.pos = cam.pos + cam.speed * normalize(cross(cam.front, cam.up));
 		cam.yaw = controls.yaw;
 		cam.pitch = controls.pitch;
 

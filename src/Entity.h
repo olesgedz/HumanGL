@@ -1,15 +1,16 @@
 #pragma once
 #include "model.h"
+#include "Maths.h"
 #include "glm/glm.hpp"
 
 class Entity
 {
 public:
-	Model		*mod;
-	glm::vec3	position;
-	glm::vec3	e_scale;
-	glm::vec3	angle;
-	glm::vec3   color;
+	Model	*mod;
+	vec3	position;
+	vec3	e_scale;
+	vec3	angle;
+	vec3    color;
 	int 		ID;
 public:
 	Entity();

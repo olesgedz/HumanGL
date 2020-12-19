@@ -2,6 +2,7 @@
 
 struct Controls
 {
+    Controls();
 	float	last_x;
 	float	last_y;
 	float	yaw;
