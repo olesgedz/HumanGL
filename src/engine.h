@@ -7,7 +7,6 @@
 #include "scene.h"
 
 
-
 class Engine {
 public:
 	Camera						cam;

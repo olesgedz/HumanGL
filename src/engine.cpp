@@ -2,7 +2,9 @@
 #include "glad.h"
 #include <iostream>
 #include "glm/glm.hpp"
-
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 
 Engine::~Engine()
 {
@@ -58,10 +60,22 @@ void Engine::init_engine(int width, int height)
 	skybox.init(faces);
 	skybox.set_shader("res/shaders/skybox_vert.glsl", "res/shaders/skybox_frag.glsl");
 
+    IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+    ImGuiIO &io = ImGui::GetIO();
+    (void)io;
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init();
+
 }
 
 void Engine::run_engine()
 {
+    bool show_demo_window = true;
+    bool show_another_window = false;
+    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
 	old_time = glfwGetTime();
 	while (!glfwWindowShouldClose(window))
 	{
@@ -78,6 +92,10 @@ void Engine::run_engine()
 			fps = 0;
 		}
 		old_time = glfwGetTime();
+
+        ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
 		cam.speed = 8.0f * delta_time;
 		if (controls.keys[GLFW_KEY_W])
@@ -96,11 +114,18 @@ void Engine::run_engine()
 		rend.draw_scene(&animator, &scene, &cam);
 		//rend.draw_pbr(&scene, &cam);
 
+
+        ImGui::Text("This is some useful text."); // Display some text (you can use a format strings too)
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		if(close_eng)
 			glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 	glfwTerminate();
 }
 

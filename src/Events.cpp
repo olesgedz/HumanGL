@@ -15,6 +15,18 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 	con = static_cast<Controls *>(glfwGetWindowUserPointer(window));
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+    if (con->lock_mouse)
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        con->lock_mouse = false;
+    }
+    else
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        con->lock_mouse = true;
+
+    }
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS)
@@ -32,6 +44,12 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos)
 	float		yoffset;
 
 	con = static_cast<Controls *>(glfwGetWindowUserPointer(window));
+	if (!con->lock_mouse)
+	{
+        con->last_x = xpos;
+        con->last_y = ypos;
+        return;
+    }
 	if (con->first_m)
 	{
 		con->last_x = xpos;
