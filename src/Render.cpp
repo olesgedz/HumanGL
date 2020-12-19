@@ -20,7 +20,7 @@ void Render::set_lights_pos(glm::vec3 **lights, int numb)
 	}
 }
 
-void Render::draw_scene(Scene* scene, Camera *cam)
+void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 {
 	int length = scene->ents.size();
 
@@ -35,9 +35,11 @@ void Render::draw_scene(Scene* scene, Camera *cam)
 
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, ent->position);
+		
 		model = glm::rotate(model, glm::radians(ent->angle[0]), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(ent->angle[1]), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(ent->angle[2]), glm::vec3(0.0f, 0.0f, 1.0f));
+		model =  model * animator->animations[0].GetAnimationTransform(*ent, 1);
 		model = glm::scale(model, ent->e_scale);
 
 		unsigned int model_loc = glGetUniformLocation(mod->shader_id, "u_M");

@@ -46,7 +46,7 @@ set(SOURCEFILES
     src/main.cpp
     libs/glad/src/glad.c libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/camera.cpp src/maths.cpp
     src/engine.cpp src/Entity.cpp src/Events.cpp src/Model.cpp src/Render.cpp src/Shader.cpp src/skybox.cpp src/sandbox.cpp src/scene.cpp
-        src/maths.cpp src/maths.h)
+        src/maths.cpp src/maths.h src/Animator.cpp src/Animator.h src/Animation.cpp src/Animation.h src/AnimationKey.cpp src/AnimationKey.h)
 include_directories(${INCLUDES})
 add_executable(${PROJECT_NAME} ${SOURCEFILES})
 link_directories(${INCLUDES}

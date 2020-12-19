@@ -10,6 +10,7 @@ public:
 	glm::vec3	e_scale;
 	glm::vec3	angle;
 	glm::vec3   color;
+	int 		ID;
 public:
 	Entity();
 	void			set_model(Model *mod);
@@ -21,4 +22,5 @@ public:
 	virtual void	update();
     void            set_color(float r, float g, float b);
 private:
+	static int idNumber;
 };

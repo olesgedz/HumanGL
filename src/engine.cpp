@@ -57,6 +57,7 @@ void Engine::init_engine(int width, int height)
 	faces.push_back("res/cubemaps/back.jpg");
 	skybox.init(faces);
 	skybox.set_shader("res/shaders/skybox_vert.glsl", "res/shaders/skybox_frag.glsl");
+
 }
 
 void Engine::run_engine()
@@ -91,8 +92,8 @@ void Engine::run_engine()
 		cam.pitch = controls.pitch;
 
 		cam.update_free();
-		//rend.draw_skybox(&skybox, &cam);
-		rend.draw_scene(&scene, &cam);
+		rend.draw_skybox(&skybox, &cam);
+		rend.draw_scene(&animator, &scene, &cam);
 		//rend.draw_pbr(&scene, &cam);
 
 		glfwSwapBuffers(window);

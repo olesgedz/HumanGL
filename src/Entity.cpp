@@ -1,6 +1,6 @@
 #include "entity.h"
 #include "glm/glm.hpp"
-
+int  Entity::idNumber = 0;
 Entity::Entity()
 {
 	move_to(0.0f, 0.0f, 0.0f);
@@ -9,6 +9,8 @@ Entity::Entity()
 	angle[2] = 0.0f;
 	scale(1.0f, 1.0f, 1.0f);
 	set_color(1.0f, 1.0f, 1.0f);
+	ID = idNumber;
+	idNumber++;
 }
 
 void	Entity::update()
