@@ -3,6 +3,7 @@
 #include <iostream>
 #include "glm/glm.hpp"
 
+double Engine::delta_time = 0.0;
 
 Engine::~Engine()
 {
@@ -81,6 +82,7 @@ void Engine::run_engine()
 
 		cam.speed = 8.0f * delta_time;
 		if (controls.keys[GLFW_KEY_W])
+
 			cam.pos = cam.pos + cam.speed * cam.front;
 		if (controls.keys[GLFW_KEY_S])
 			cam.pos = cam.pos - cam.speed * cam.front;

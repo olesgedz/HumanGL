@@ -34,6 +34,11 @@ vec3 operator *(float f, vec3 vector)
     return vec3(vector.x * f, vector.y * f, vector.z * f);
 }
 
+vec3 operator *(vec3 vector, float  other)
+{
+	return vec3(vector.x * other,vector.y * other, vector.z * other);
+}
+
 mat3::mat3(mat4 &other)
 {
     for (int i = 0; i < 3; ++i)

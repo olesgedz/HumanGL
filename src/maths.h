@@ -21,7 +21,7 @@ struct vec3
 };
 
 vec3 operator *(float f, vec3 vector);
-
+vec3 operator *(vec3 vector, float  other);
 struct mat4;
 
 struct mat3
@@ -94,6 +94,22 @@ struct mat4
             result.mat[i] = ptr[i];
         return result;
     };
+
+//	mat4 operator -(mat4 other)
+//	{
+//		mat4    result;
+//		int		i;
+//
+//		i = 0;
+//		while (i < 16)
+//		{
+//			result.mat[i] = mat[i] - other.mat[i];
+//			i++;
+//		}
+//		return result;
+//	};
+
+
 };
 
 vec3    normalize(vec3 vector);

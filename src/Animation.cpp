@@ -8,17 +8,54 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Maths.h"
+#include <iostream>
 
-mat4 Animation::GetAnimationTransform(const Entity& entity, float time)
+vec3 Animation::GetAnimationTransform(const Entity& entity, float time)
 {
-	mat4 ret = mat4(1.0f);
-	return rotate(ret, vec3(0, (float)glfwGetTime() * 30, 0));
+//	vec3 ret = mat4(1.0f);
+//	return rotate(ret, vec3(0, (float)glfwGetTime() * 30, 0));
+	return vec3(1.0f, 1,1);
 }
 
-Animation::Animation(const std::vector<AnimationKey> &keys) : keys(keys)
+vec3 Animation::GetRotationMatrix(const Entity& entity, float time)
 {
+	if (keys.size() == 1)
+		return keys[0]->rotation;
+//	float diff =  duration - timeFromStart;
+//	vec3 vecDiff = keys[1]->rotation - keys[0]->rotation;
 
+//	float DeltaTime = keys[1]->frameTime - keys[0]->frameTime;
+//	float Factor = (timeFromStart - keys[0]->frameTime) / DeltaTime;
+//
+//	vec3 delta = keys[1]->rotation - keys[0]->rotation;
+//	return keys[0]->rotation + Factor * delta;
+
+	vec3 vecDiff = keys[1]->rotation - keys[0]->rotation;
+	float diff =  (timeFromStart - keys[0]->frameTime) / (keys[1]->frameTime - keys[0]->frameTime) ;
+//	std::cout << diff << std::endl;
+
+	vec3 r =  keys[0]->rotation + vecDiff * diff;
+	std::cout << r.x << " " << r.y << " "  << r.z << " "   << std::endl;
+	return r;
 }
+
+mat4 Animation::GetAnimationMatrix(const Entity& entity, float time)
+{
+	timeFromStart += time;
+
+	if (timeFromStart > duration)
+		timeFromStart = 0;
+	std::cout << timeFromStart << std::endl;
+
+	mat4 result = mat4(1.0f);
+	result =  rotate(result, GetRotationMatrix(entity, time));
+	return result;
+}
+
+//Animation::Animation(const std::vector<AnimationKey> &keys) : keys(keys)
+//{
+//
+//}
 
 Animation::Animation(float duration)
 {
