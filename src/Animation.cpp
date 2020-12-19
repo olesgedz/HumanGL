@@ -21,20 +21,15 @@ vec3 Animation::GetRotationMatrix(const Entity& entity, float time)
 {
 	if (keys.size() == 1)
 		return keys[0]->rotation;
-//	float diff =  duration - timeFromStart;
-//	vec3 vecDiff = keys[1]->rotation - keys[0]->rotation;
 
-//	float DeltaTime = keys[1]->frameTime - keys[0]->frameTime;
-//	float Factor = (timeFromStart - keys[0]->frameTime) / DeltaTime;
-//
-//	vec3 delta = keys[1]->rotation - keys[0]->rotation;
-//	return keys[0]->rotation + Factor * delta;
+ 	float DeltaTime = keys[1]->frameTime - keys[0]->frameTime;
+	float Factor = (timeFromStart - keys[0]->frameTime) / DeltaTime;
+
 
 	vec3 vecDiff = keys[1]->rotation - keys[0]->rotation;
-	float diff =  (timeFromStart - keys[0]->frameTime) / (keys[1]->frameTime - keys[0]->frameTime) ;
-//	std::cout << diff << std::endl;
 
-	vec3 r =  keys[0]->rotation + vecDiff * diff;
+
+	vec3 r =  keys[0]->rotation + vecDiff  * Factor;
 	std::cout << r.x << " " << r.y << " "  << r.z << " "   << std::endl;
 	return r;
 }
