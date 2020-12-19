@@ -43,7 +43,9 @@ mat4 Animation::GetAnimationMatrix(const Entity& entity, float time)
 	std::cout << timeFromStart << std::endl;
 
 	mat4 result = mat4(1.0f);
-	result =  rotate(result, GetRotationMatrix(entity, time));
+	result = rotate(result, GetRotationMatrix(entity, time));
+	vec3 a = vec3(entity.position.x,entity.position.y,entity.position.z);
+	result =   translate(result, a);
 	return result;
 }
 
