@@ -8,6 +8,7 @@
 #include "AnimationKey.h"
 #include <vector>
 #include "Entity.h"
+#include "Maths.h"
 class Animation
 {
 	public:
@@ -15,7 +16,7 @@ class Animation
 		Animation(const std::vector<AnimationKey> &keys);
 
 	std::vector<AnimationKey> keys;
-	glm::mat4 GetAnimationTransform(const Entity& entity, float time);
+	mat4 GetAnimationTransform(const Entity& entity, float time);
 	private:
 		float timeFromStart = 0;
 		float duration = 0;

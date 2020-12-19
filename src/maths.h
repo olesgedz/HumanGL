@@ -71,7 +71,7 @@ struct mat4
             mat[i] = other.mat[i];
     };
     mat4(mat3& other);
-    mat4 operator *(mat4& other)
+    mat4 operator *(mat4 other)
     {
         mat4    result;
         float   ptr[16];
@@ -102,7 +102,7 @@ float   dot(vec3& vector1, vec3& vector2);
 mat4    look_at(vec3 eye, vec3 center, vec3 up);
 mat4    perspective(float fov, float ratio, float near, float far);
 mat4    translate(mat4& matrix, vec3& vector);
-mat4    rotate(mat4& matrix, vec3& vector);
+mat4    rotate(mat4 matrix, vec3 vector);
 mat4    scale(mat4& matrix, vec3& vector);
 
 #endif //HUMAGL_MATHS_H

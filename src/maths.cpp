@@ -141,7 +141,7 @@ mat4 rotate_z(mat4& matrix, float angle)
     return matrix;
 }
 
-mat4    rotate(mat4& matrix, vec3& vector)
+mat4    rotate(mat4 matrix, vec3 vector)
 {
     mat4 m1(1.0f);
     mat4 m2(1.0f);

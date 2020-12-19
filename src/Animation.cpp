@@ -7,11 +7,12 @@
 #include "GLFW/glfw3.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Maths.h"
 
-glm::mat4 Animation::GetAnimationTransform(const Entity& entity, float time)
+mat4 Animation::GetAnimationTransform(const Entity& entity, float time)
 {
-	glm::mat4 ret = glm::mat4(1.0f);
-	return glm::rotate(ret, (float)glfwGetTime() * glm::radians(30.0f), glm::vec3 (0, 1, 0));
+	mat4 ret = mat4(1.0f);
+	return rotate(ret, vec3(0, (float)glfwGetTime() * 30, 0));
 }
 
 Animation::Animation(const std::vector<AnimationKey> &keys) : keys(keys)
