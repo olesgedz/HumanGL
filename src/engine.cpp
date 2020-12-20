@@ -115,7 +115,11 @@ void Engine::run_engine()
 		//rend.draw_pbr(&scene, &cam);
 
 
-        ImGui::Text("This is some useful text."); // Display some text (you can use a format strings too)
+        ImGui::Text("Use buttons to change animation"); // Display some text (you can use a format strings too)
+        if (ImGui::Button("Idle"))
+            std::cout << "Idle anim" << std::endl;
+        ImGui::Button("Run");
+        ImGui::Button("Jump");
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
