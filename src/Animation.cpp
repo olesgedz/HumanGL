@@ -104,6 +104,7 @@ mat4 Animation::GetAnimationMatrix(const Entity& entity, float time)
 	result = translate(result, GetPosition(entity, time));
 	result = rotate(result, GetRotationMatrix(entity, time));
 	result = scale(result, GetScale(entity, time));
+
 	return result;
 }
 

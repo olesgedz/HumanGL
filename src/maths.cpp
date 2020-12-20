@@ -112,13 +112,13 @@ mat4    perspective(float fov, float ratio, float near, float far)
 
 mat4    translate(mat4 matrix, vec3 vector)
 {
-    matrix.mat[0] = 1.0f;
-    matrix.mat[12] = vector.x;
-    matrix.mat[5] = 1.0f;
-    matrix.mat[13] = vector.y;
-    matrix.mat[10] = 1.0f;
-    matrix.mat[14] = vector.z;
-    matrix. mat[15] = 1.0f;
+   	//matrix.mat[0] = 1.0f;
+    matrix.mat[12] += vector.x;
+   	//matrix.mat[5] = 1.0f;
+    matrix.mat[13] += vector.y;
+   	//matrix.mat[10] = 1.0f;
+    matrix.mat[14] += vector.z;
+    matrix.mat[15] = 1.0f;
     return matrix;
 }
 

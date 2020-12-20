@@ -13,8 +13,8 @@ Animator::Animator()
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(90,0,0),vec3(0,0,0)));
 
 	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
-	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
-	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,5) , vec3(0,90,0),vec3(2,2,2)));
+	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,5) , vec3(0,90,0),vec3(1,1,1)));
+	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,10) , vec3(0,90,0),vec3(1,1,1)));
 	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
 
 

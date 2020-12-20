@@ -24,9 +24,11 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 		glBindVertexArray(mod->vao);
 
 		mat4 model = mat4(1.0f);
-		model = translate(model, ent->position);
-		model = rotate(model, ent->angle) * animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
-		model =   model;
+			model = translate(model, ent->position);
+			model = translate(model, vec3(-10, -10, -10));
+			model = rotate(model, ent->angle) * animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
+			model = translate(model, vec3(10, 10, 10));
+//		model =   model;
 
 		model = scale(model, ent->e_scale);
 
