@@ -12,6 +12,7 @@ public:
 	vec3	angle;
 	vec3    color;
 	int 		ID;
+	vec3 positionOffset;
 public:
 	Entity();
 	void			set_model(Model *mod);
@@ -22,6 +23,7 @@ public:
 	void			scale(float x, float y, float z);
 	virtual void	update();
     void            set_color(float r, float g, float b);
+	void            set_offset(vec3 offset);
 private:
 	static int idNumber;
 };
