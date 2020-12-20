@@ -5,14 +5,20 @@
 #ifndef HUMAGL_ANIMATIONKEY_H
 #define HUMAGL_ANIMATIONKEY_H
 
-#include "glm/glm.hpp"
+#include "Maths.h"
 class AnimationKey
 {
 	public:
-	glm::mat4 position;
-	glm::mat4 rotation;
-	glm::mat4 scale;
-	AnimationKey();
+	vec3 position;
+	vec3 rotation;
+	vec3 scale;
+	float frameTime;
+	float startTime;
+//	float finishTime;
+	AnimationKey(float time, vec3 p, vec3 r , vec3 s) : position(p), rotation(r), scale(s), frameTime(time)
+	{
+
+	}
 	private:
 };
 

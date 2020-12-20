@@ -5,21 +5,30 @@
 #ifndef HUMAGL_ANIMATION_H
 #define HUMAGL_ANIMATION_H
 #include "glm/glm.hpp"
-#include "AnimationKey.h"
 #include <vector>
+#include "AnimationKey.h"
 #include "Entity.h"
 #include "Maths.h"
 class Animation
 {
 	public:
-		Animation(float duration);
-		Animation(const std::vector<AnimationKey> &keys);
+		Animation();
+	//	Animation(const std::vector<AnimationKey> &keys);
 
-	std::vector<AnimationKey> keys;
-	mat4 GetAnimationTransform(const Entity& entity, float time);
-	private:
-		float timeFromStart = 0;
-		float duration = 0;
+	std::vector<AnimationKey *> keys;
+	vec3 GetPosition(const Entity& entity, float time);
+	mat4 GetAnimationMatrix(const Entity& entity, float time);
+	vec3 GetRotationMatrix(const Entity& entity, float time);
+	void AddAnimationKey(AnimationKey *key);
+
+	Animation(const std::vector<AnimationKey *> &keys);
+
+private:
+	float duration = 0;
+	float timeFromStart = 0;
+		int FindKey();
+
+
 };
 
 

@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "glm/glm.hpp"
+#include "engine.h"
 
 void Render::init()
 {
@@ -24,8 +25,8 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 
 		mat4 model = mat4(1.0f);
 		model = translate(model, ent->position);
-		model = rotate(model, ent->angle);
-		model =  model * animator->animations[0].GetAnimationTransform(*ent, 1);
+		model = rotate(model, ent->angle) * animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
+		model =   model;
 
 		model = scale(model, ent->e_scale);
 
