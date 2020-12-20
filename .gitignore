@@ -54,3 +54,5 @@ cmake-build-debug
 *.exe
 cmake
 !build/anchor
+humangl
+humagl

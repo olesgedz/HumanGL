@@ -8,11 +8,12 @@
 #include <vector>
 #include "Animation.h"
 #include <map>
+#include <string>
 
 class Animator
 {
 	public:
-		std::vector<Animation> animations;
+		std::map<std::string, std::vector<Animation>> animations;
 		Animator();
 		~Animator() = default;
 	private:

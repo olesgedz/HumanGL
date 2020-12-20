@@ -6,16 +6,16 @@
 
 Animator::Animator()
 {
-	animations.emplace_back();
+	animations["run"].emplace_back();
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(0,0,0)));
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f,vec3(0,0,0), vec3(90,0,0), vec3(0,0,0)));
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(180,0,0),vec3(0,0,0)));
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(90,0,0),vec3(0,0,0)));
 
-	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
-	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,90,0),vec3(1,1,1)));
-	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,90,0), vec3(1,1,1)));
-	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0), vec3(1,1,1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,90,0),vec3(1,1,1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,90,0), vec3(1,1,1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0), vec3(1,1,1)));
 
 
 
