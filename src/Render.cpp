@@ -12,15 +12,29 @@ void Render::init()
 
 void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 ani_model)
 {
-    std::cout << "draw child" << std::endl;
+//    std::cout << "draw child" << std::endl;
     Model *mod = ent->mod;
     glUseProgram(mod->shader_id);
     glBindVertexArray(mod->vao);
     mat4 model = mat4(1.0f);
     model = translate(model, ent->position);
-    model = rotate(model, ent->angle);
     if (ent->ID == 1)
-        ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+	{
+    	std::cout << "POS " << ent->positionOffset.x << std::endl;
+//    	ani_model = translate(ani_model, -1*ent->positionOffset);
+		//ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+//		ani_model = translate(ani_model, ent->positionOffset);
+
+
+	}
+//    else
+//	{
+//		model = rotate(model, ent->angle);
+//
+//	}
+
+//	if (ent->ID == 2)
+//		ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
     model = ani_model * model;
     mat4 tmp_model = model;
     model = scale(model, ent->e_scale);
@@ -69,13 +83,14 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 
         mat4 model = mat4(1.0f);
         model = translate(model, ent->position);
-        model = rotate(model, ent->angle);
-        // model = translate(model, ent->position);
+		model = translate(model, vec3(-3,-3,-3));
+		model = rotate(model, ent->angle);
+        model = translate(model, vec3(3,3,3));
 
 
-            mat4 ani_model = mat4(1.0f); //= animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
+            mat4 ani_model = mat4(1.0f);//animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time);
 
-            model = model * ani_model;
+            model = model * animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time);
         model = scale(model, ent->e_scale);
 
 //        glm::mat4 m = glm::mat4(1.0f);

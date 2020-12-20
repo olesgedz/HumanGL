@@ -39,14 +39,15 @@ void Sandbox::place_ent(Engine* eng)
     torso->set_color(0.9f, 0.0f, 0.0f);
     torso->move_to(0.0f, 0.0f, 0.0f);
     torso->scale(0.5f, 1.0f, 0.1f);
+	torso->set_offset(vec3(2.0f, 2.0f, 2.0f));
 
-    head->set_model(mod);
+	head->set_model(mod);
     //eng->add_entity(head);
     head->set_parent(torso);
     head->set_color(0.0f, 0.0f, 0.7f);
     head->move_to(0.0f, 0.6f, 0.0f);
     head->scale(0.2f, 0.2f, 0.2f);
-    head->set_offset(vec3(0.0f, 10.0f, 0.0f));
+    head->set_offset(vec3(2.0f, 2.0f, 2.0f));
 
     upperArm1->set_model(mod);
     //eng->add_entity(upperArm1);
