@@ -19,6 +19,7 @@ class Animation
 	vec3 GetPosition(const Entity& entity, float time);
 	mat4 GetAnimationMatrix(const Entity& entity, float time);
 	vec3 GetRotationMatrix(const Entity& entity, float time);
+	vec3 GetScale (const Entity& entity, float time);
 	void AddAnimationKey(AnimationKey *key);
 
 	Animation(const std::vector<AnimationKey *> &keys);

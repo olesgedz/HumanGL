@@ -162,7 +162,7 @@ mat4    rotate(mat4 matrix, vec3 vector)
     matrix = m3 * matrix;
     return matrix;
 }
-mat4    scale(mat4& matrix, vec3& vector)
+mat4    scale(mat4 matrix, vec3 vector)
 {
     mat4 m1(1.0f);
     m1.mat[0] = vector.x;
