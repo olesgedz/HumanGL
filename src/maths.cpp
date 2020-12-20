@@ -38,6 +38,9 @@ vec3 operator *(vec3 vector, float  other)
 {
 	return vec3(vector.x * other,vector.y * other, vector.z * other);
 }
+vec3  lerp(vec3 v0, vec3 v1, float t) {
+return (v0 * (1 - t) + v1 * t);
+}
 
 mat3::mat3(mat4 &other)
 {
@@ -107,7 +110,7 @@ mat4    perspective(float fov, float ratio, float near, float far)
     return persp;
 }
 
-mat4    translate(mat4& matrix, vec3& vector)
+mat4    translate(mat4 matrix, vec3 vector)
 {
     matrix.mat[0] = 1.0f;
     matrix.mat[12] = vector.x;

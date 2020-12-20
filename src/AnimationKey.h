@@ -13,6 +13,8 @@ class AnimationKey
 	vec3 rotation;
 	vec3 scale;
 	float frameTime;
+	float startTime;
+//	float finishTime;
 	AnimationKey(float time, vec3 p, vec3 r , vec3 s) : position(p), rotation(r), scale(s), frameTime(time)
 	{
 
