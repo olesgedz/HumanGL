@@ -26,9 +26,8 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 		mat4 model = mat4(1.0f);
 		model = translate(model, ent->position);
 		model = rotate(model, ent->angle) * animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
-		model =   model;
-
 		model = scale(model, ent->e_scale);
+
 
 		unsigned int model_loc = glGetUniformLocation(mod->shader_id, "u_M");
 		glUniformMatrix4fv(model_loc, 1, GL_FALSE, model.mat);

@@ -6,6 +6,7 @@ Entity::Entity()
 	move_to(0.0f, 0.0f, 0.0f);
 	scale(1.0f, 1.0f, 1.0f);
 	set_color(1.0f, 1.0f, 1.0f);
+ 	set_offset(vec3(0,0,0));
 	ID = idNumber;
 	idNumber++;
 }
@@ -14,7 +15,10 @@ void	Entity::update()
 {
 
 }
-
+void  Entity::set_offset(vec3 offset)
+{
+	positionOffset = offset;
+}
 void Entity::set_model(Model *model)
 {
 	mod = model;

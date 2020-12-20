@@ -7,10 +7,12 @@
 
 #include <vector>
 #include "Animation.h"
+#include <map>
+
 class Animator
 {
 	public:
-		std::vector<Animation> animations;
+		std::map<int, std::vector<Animation>> animationMap;
 		Animator();
 		~Animator() = default;
 	private:
