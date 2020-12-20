@@ -71,3 +71,4 @@ void Entity::set_parent(Entity *ent)
 	parent = ent;
 	ent->childrens.push_back(this);
 }
+
