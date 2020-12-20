@@ -10,7 +10,7 @@ void Render::init()
 	projection = perspective(60.0f * M_PI / 180.0f, 1280.0f / 720.0f, 0.1f, 100.0f);
 }
 
-void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 par_model)
+void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 ani_model)
 {
     std::cout << "draw child" << std::endl;
     Model *mod = ent->mod;
@@ -18,31 +18,37 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
     glBindVertexArray(mod->vao);
     mat4 model = mat4(1.0f);
     model = translate(model, ent->position);
+    model = rotate(model, ent->angle);
+    if (ent->ID == 1)
+        ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+    model = ani_model * model;
+    mat4 tmp_model = model;
     model = scale(model, ent->e_scale);
+
+
     unsigned int model_loc = glGetUniformLocation(mod->shader_id, "u_M");
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model.mat);
     unsigned int view_loc = glGetUniformLocation(mod->shader_id, "u_V");
     glUniformMatrix4fv(view_loc, 1, GL_FALSE, cam->view.mat);
     unsigned int proj_loc = glGetUniformLocation(mod->shader_id, "u_P");
     glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection.mat);
-	glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "material.diffuse"), ent->color.x, ent->color.y, ent->color.z);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.4f, 0.4f, 0.4f);
-	glUniform1f(glGetUniformLocation(mod->shader_id, "material.shininess"), 16.0f);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "light.ambient"), 0.3f, 0.3f, 0.3f);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "light.diffuse"), 0.8f, 0.8f, 0.8f);
-	glUniform3f(glGetUniformLocation(mod->shader_id, "light.specular"), 0.5f, 0.5f, 0.5f);
-	glUniform1f(glGetUniformLocation(mod->shader_id, "light.constant"), 1.0f);
-	glUniform1f(glGetUniformLocation(mod->shader_id, "light.linear"), 0.045f);
-	glUniform1f(glGetUniformLocation(mod->shader_id, "light.quadratic"), 0.0075f);
-	glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
+
+    glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "material.diffuse"), ent->color.x, ent->color.y, ent->color.z);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.4f, 0.4f, 0.4f);
+    glUniform1f(glGetUniformLocation(mod->shader_id, "material.shininess"), 16.0f);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "light.ambient"), 0.3f, 0.3f, 0.3f);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "light.diffuse"), 0.8f, 0.8f, 0.8f);
+    glUniform3f(glGetUniformLocation(mod->shader_id, "light.specular"), 0.5f, 0.5f, 0.5f);
+    glUniform1f(glGetUniformLocation(mod->shader_id, "light.constant"), 1.0f);
+    glUniform1f(glGetUniformLocation(mod->shader_id, "light.linear"), 0.045f);
+    glUniform1f(glGetUniformLocation(mod->shader_id, "light.quadratic"), 0.0075f);
+    glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
     int child_numb = ent->childrens.size();
     for (int j = 0; j < child_numb; ++j)
-        draw_child(ent->childrens[j], animator, scene, cam, model);
-
-
+        draw_child(ent->childrens[j], animator, scene, cam, ani_model);
 }
 
 void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
@@ -63,13 +69,13 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 
         mat4 model = mat4(1.0f);
         model = translate(model, ent->position);
+        model = rotate(model, ent->angle);
         // model = translate(model, ent->position);
-//        if (i == 2) {
-//            model = translate(model, vec3(-0.25, 0, 0));
-//
-            model = rotate(model, ent->angle) * animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time); // animations["run"][objectId]
-//            model = translate(model, vec3(0.25, 0, 0));
-//        }
+
+
+            mat4 ani_model = mat4(1.0f); //= animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
+
+            model = model * ani_model;
         model = scale(model, ent->e_scale);
 
 //        glm::mat4 m = glm::mat4(1.0f);
@@ -95,24 +101,24 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 		glUniformMatrix4fv(view_loc, 1, GL_FALSE, cam->view.mat);
 		unsigned int proj_loc = glGetUniformLocation(mod->shader_id, "u_P");
 		glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection.mat);
-		glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "material.diffuse"), ent->color.x, ent->color.y, ent->color.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.4f, 0.4f, 0.4f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "material.shininess"), 16.0f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "light.ambient"), 0.3f, 0.3f, 0.3f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "light.diffuse"), 0.8f, 0.8f, 0.8f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "light.specular"), 0.5f, 0.5f, 0.5f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "light.constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "light.linear"), 0.045f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "light.quadratic"), 0.0075f);
-		glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
+
+        glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "material.diffuse"), ent->color.x, ent->color.y, ent->color.z);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.4f, 0.4f, 0.4f);
+        glUniform1f(glGetUniformLocation(mod->shader_id, "material.shininess"), 16.0f);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "light.ambient"), 0.3f, 0.3f, 0.3f);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "light.diffuse"), 0.8f, 0.8f, 0.8f);
+        glUniform3f(glGetUniformLocation(mod->shader_id, "light.specular"), 0.5f, 0.5f, 0.5f);
+        glUniform1f(glGetUniformLocation(mod->shader_id, "light.constant"), 1.0f);
+        glUniform1f(glGetUniformLocation(mod->shader_id, "light.linear"), 0.045f);
+        glUniform1f(glGetUniformLocation(mod->shader_id, "light.quadratic"), 0.0075f);
+        glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
+
         int child_numb = ent->childrens.size();
         for (int j = 0; j < child_numb; ++j)
-            draw_child(ent->childrens[j], animator, scene, cam, model);
-
-
+            draw_child(ent->childrens[j], animator, scene, cam, ani_model);
 	}
 }
 

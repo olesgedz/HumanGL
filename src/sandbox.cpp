@@ -46,6 +46,7 @@ void Sandbox::place_ent(Engine* eng)
     head->set_color(0.0f, 0.0f, 0.7f);
     head->move_to(0.0f, 0.6f, 0.0f);
     head->scale(0.2f, 0.2f, 0.2f);
+    head->set_offset(vec3(0.0f, 10.0f, 0.0f));
 
     upperArm1->set_model(mod);
     //eng->add_entity(upperArm1);
