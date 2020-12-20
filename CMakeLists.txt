@@ -41,12 +41,13 @@ set(INCLUDES
         libs/glad/include/
     libs/glfw/include/
     libs/stb_image/
-    libs/imgui
+    libs/imgui/backends
+    libs/imgui/
     libs/glm/  src/)
 set(SOURCEFILES
     src/main.cpp
     libs/glad/src/glad.c libs/stb_image/stb_image.h libs/stb_image/stb_image_helper.cpp src/camera.cpp src/maths.cpp
-    libs/imgui/imgui.cpp libs/imgui/imgui_draw.cpp libs/imgui/imgui_widgets.cpp libs/imgui/imgui_impl_opengl3.cpp libs/imgui/imgui_impl_glfw.cpp
+    libs/imgui/imgui.cpp libs/imgui/imgui_draw.cpp libs/imgui/imgui_widgets.cpp libs/imgui/backends/imgui_impl_opengl3.cpp libs/imgui/backends/imgui_impl_glfw.cpp
         libs/imgui/imgui_tables.cpp
     src/engine.cpp src/Entity.cpp src/Events.cpp src/Model.cpp src/Render.cpp src/Shader.cpp src/skybox.cpp src/sandbox.cpp src/scene.cpp
         src/maths.cpp src/maths.h src/Animator.cpp src/Animator.h src/Animation.cpp src/Animation.h src/AnimationKey.cpp src/AnimationKey.h)
