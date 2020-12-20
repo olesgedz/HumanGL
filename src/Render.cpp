@@ -12,31 +12,18 @@ void Render::init()
 
 void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 ani_model)
 {
-//    std::cout << "draw child" << std::endl;
+    std::cout << "draw child" << std::endl;
     Model *mod = ent->mod;
     glUseProgram(mod->shader_id);
     glBindVertexArray(mod->vao);
     mat4 model = mat4(1.0f);
     model = translate(model, ent->position);
-    if (ent->ID == 1)
-	{
-    	std::cout << "POS " << ent->positionOffset.x << std::endl;
-//    	ani_model = translate(ani_model, -1*ent->positionOffset);
-		//ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
-//		ani_model = translate(ani_model, ent->positionOffset);
-
-
-	}
-//    else
-//	{
-//		model = rotate(model, ent->angle);
-//
-//	}
-
-//	if (ent->ID == 2)
-//		ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
-    model = ani_model * model;
-    mat4 tmp_model = model;
+    model = rotate(model, ent->angle);
+    model = translate(model, -1 * vec3(0.25f, 0.0f, 0.0f));
+   if (ent->ID == 2)
+        ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+    model = model * ani_model;
+    model = translate(model, vec3(0.25f, 0.0f, 0.0f));
     model = scale(model, ent->e_scale);
 
 
@@ -67,7 +54,7 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
 
 void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 {
-    std::cout << "draw scene" << std::endl;
+   // std::cout << "draw scene" << std::endl;
 	int length = scene->ents.size();
 
 	for (int i = 0; i < length; ++i) {
@@ -83,14 +70,15 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 
         mat4 model = mat4(1.0f);
         model = translate(model, ent->position);
-		model = translate(model, vec3(-3,-3,-3));
-		model = rotate(model, ent->angle);
-        model = translate(model, vec3(3,3,3));
+        model = rotate(model, ent->angle);
+        mat4 ani_model = mat4(1.0f);
+        //model = translate(model, vec3(0.5f, 0.0f, 0.0f));
+       // if (i == 0)
+        //   ani_model = animator->animations[0].GetAnimationMatrix(*ent, Engine::delta_time);
+        //model = model * ani_model;
+        //model = translate(model, -1 * vec3(0.5f, 0.0f, 0.0f));
 
-
-            mat4 ani_model = mat4(1.0f);//animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time);
-
-            model = model * animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time);
+        // model = model * ani_model;
         model = scale(model, ent->e_scale);
 
 //        glm::mat4 m = glm::mat4(1.0f);

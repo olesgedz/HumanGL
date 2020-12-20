@@ -97,14 +97,15 @@ mat4 Animation::GetAnimationMatrix(const Entity& entity, float time)
 	if (timeFromStart >= duration)
 		timeFromStart = 0;
 	std::cout << timeFromStart << std::endl;
-	std::cout << "Duration" << duration << std::endl;
+	std::cout << "Duration " << duration << std::endl;
+	std::cout << "offset " << entity.positionOffset.x << std::endl;
 	int key = FindKey();
 
 	mat4 result = mat4(1.0f);
 	result = translate(result, GetPosition(entity, time));
-	result = translate(result,   vec3(-10,-10,-10));
+	//result = translate(result,   -1 * entity.positionOffset);
 	result = rotate(result, GetRotationMatrix(entity, time));
-	result = translate(result, vec3(10,10,10));
+	//result = translate(result, entity.positionOffset);
 	result = scale(result, GetScale(entity, time));
 
 	return result;
