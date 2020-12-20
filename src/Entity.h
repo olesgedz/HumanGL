@@ -1,6 +1,7 @@
 #pragma once
 #include "model.h"
 #include "Maths.h"
+#include <vector>
 #include "glm/glm.hpp"
 
 class Entity
@@ -12,6 +13,8 @@ public:
 	vec3	angle;
 	vec3    color;
 	int 		ID;
+	std::vector<Entity *> childrens;
+	Entity*     parent;
 	vec3 positionOffset;
 public:
 	Entity();
@@ -23,6 +26,7 @@ public:
 	void			scale(float x, float y, float z);
 	virtual void	update();
     void            set_color(float r, float g, float b);
+    void            set_parent(Entity* ent);
 	void            set_offset(vec3 offset);
 private:
 	static int idNumber;

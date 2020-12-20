@@ -65,3 +65,9 @@ void Entity::set_color(float r, float g, float b)
     color.y = g;
     color.z = b;
 }
+
+void Entity::set_parent(Entity *ent)
+{
+	parent = ent;
+	ent->childrens.push_back(this);
+}

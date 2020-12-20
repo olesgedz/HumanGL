@@ -12,7 +12,7 @@
 class Animator
 {
 	public:
-		std::map<int, std::vector<Animation>> animationMap;
+		std::vector<Animation> animations;
 		Animator();
 		~Animator() = default;
 	private:

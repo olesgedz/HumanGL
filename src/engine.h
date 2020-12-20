@@ -11,7 +11,7 @@ class Engine {
 public:
 	Camera						cam;
 	Animator 					animator;
-	static double						delta_time;
+	static double				delta_time;
 	std::vector<Model *>		models;
 	Scene						scene;
 	Controls					controls;

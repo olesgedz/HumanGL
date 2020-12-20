@@ -6,6 +6,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+double Engine::delta_time = 0.0f;
 Engine::~Engine()
 {
 	int length = models.size();
