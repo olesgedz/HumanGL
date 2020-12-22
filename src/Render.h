@@ -9,7 +9,7 @@ public:
 	Entity *player;
 public:
 	void	init();
-	void	draw_scene(Animator * animator, Scene* scene, Camera* cam);
+	void	draw_scene(Animator * animator, Scene* scene, Camera* cam, Skybox *skybox);
 	void	draw_pbr(Scene *scene, Camera *cam);
 	void	draw_skybox(Skybox *skybox, Camera* cam);
 

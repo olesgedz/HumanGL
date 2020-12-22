@@ -9,7 +9,7 @@ void Render::init()
 	projection = perspective(60.0f * M_PI / 180.0f, 1280.0f / 720.0f, 0.1f, 100.0f);
 }
 
-void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
+void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam, Skybox * skybox)
 {
 	int length = scene->ents.size();
 
@@ -39,16 +39,20 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 		glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
 		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
 		glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "material.diffuse"), ent->color.x, ent->color.y, ent->color.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.4f, 0.4f, 0.4f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "material.shininess"), 16.0f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "light.ambient"), 0.3f, 0.3f, 0.3f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "light.diffuse"), 0.8f, 0.8f, 0.8f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "light.specular"), 0.5f, 0.5f, 0.5f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "light.constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "light.linear"), 0.045f);
-		glUniform1f(glGetUniformLocation(mod->shader_id, "light.quadratic"), 0.0075f);
-		glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
+//		glUniform3f(glGetUniformLocation(mod->shader_id, "material.diffuse"), ent->color.x, ent->color.y, ent->color.z);
+//		glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.4f, 0.4f, 0.4f);
+//		glUniform1f(glGetUniformLocation(mod->shader_id, "material.shininess"), 16.0f);
+//		glUniform3f(glGetUniformLocation(mod->shader_id, "light.ambient"), 0.3f, 0.3f, 0.3f);
+//		glUniform3f(glGetUniformLocation(mod->shader_id, "light.diffuse"), 0.8f, 0.8f, 0.8f);
+//		glUniform3f(glGetUniformLocation(mod->shader_id, "light.specular"), 0.5f, 0.5f, 0.5f);
+//		glUniform1f(glGetUniformLocation(mod->shader_id, "light.constant"), 1.0f);
+//		glUniform1f(glGetUniformLocation(mod->shader_id, "light.linear"), 0.045f);
+//		glUniform1f(glGetUniformLocation(mod->shader_id, "light.quadratic"), 0.0075f);
+       // glUniform1i(glGetUniformLocation(mod->shader_id, "skybox"), skybox->texture);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, skybox->texture);
+
+
+        glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
 	}
 }
 
