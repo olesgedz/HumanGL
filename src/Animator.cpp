@@ -6,6 +6,14 @@
 
 Animator::Animator()
 {
+animations["run"].emplace_back();
+	animations["run"].emplace_back();
+	animations["run"].emplace_back();
+	animations["run"].emplace_back();
+	animations["run"].emplace_back();
+	animations["run"].emplace_back();
+	animations["run"].emplace_back();
+	animations["run"].emplace_back();
 	animations["run"].emplace_back();
 	animations["run"].emplace_back();
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0),vec3(0,0,0)));
@@ -13,15 +21,35 @@ Animator::Animator()
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(180,0,0),vec3(0,0,0)));
 //	animations[0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(90,0,0),vec3(0,0,0)));
 
-	animations["run"][0].AddAnimationKey(new AnimationKey(20.f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
-	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,90,0),vec3(1,1,1)));
-	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0), vec3(1,1,1)));
-	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0), vec3(1,1,1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 90, 0), vec3(1, 1, 1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][0].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
-    animations["run"][1].AddAnimationKey(new AnimationKey(20.f, vec3(0,0,0) , vec3(0,0,0),vec3(1,1,1)));
-    animations["run"][1].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,90,0),vec3(1,1,1)));
-    animations["run"][1].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0), vec3(1,1,1)));
-    animations["run"][1].AddAnimationKey(new AnimationKey(20.0f, vec3(0,0,0) , vec3(0,0,0), vec3(1,1,1)));
+	animations["run"][1].AddAnimationKey(new AnimationKey(20.f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][1].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 30), vec3(1, 1, 1)));
+	animations["run"][1].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][1].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+
+	animations["run"][2].AddAnimationKey(new AnimationKey(20.f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][2].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 90, 90), vec3(1, 1, 1)));
+	animations["run"][2].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][2].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+
+	animations["run"][3].AddAnimationKey(new AnimationKey(20.f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][3].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 90), vec3(1, 1, 1)));
+	animations["run"][3].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][3].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+
+	animations["run"][4].AddAnimationKey(new AnimationKey(20.f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][4].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, -90), vec3(1, 1, 1)));
+	animations["run"][4].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][4].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+
+	animations["run"][5].AddAnimationKey(new AnimationKey(20.f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][5].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 90), vec3(1, 1, 1)));
+	animations["run"][5].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["run"][5].AddAnimationKey(new AnimationKey(20.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 
 

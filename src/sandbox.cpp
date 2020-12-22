@@ -46,7 +46,7 @@ void Sandbox::place_ent(Engine* eng)
     head->set_color(0.0f, 0.0f, 0.7f);
     head->move_to(0.0f, 0.6f, 0.0f);
     head->scale(0.2f, 0.2f, 0.2f);
-    head->set_offset(vec3(0.0f, 0.0f, 0.0f));
+    head->set_offset(vec3(0.0f, 0.5f, 0.0f));
 
     upperArm1->set_model(mod);
     //eng->add_entity(upperArm1);
@@ -54,7 +54,7 @@ void Sandbox::place_ent(Engine* eng)
     upperArm1->set_color(0.1f, 0.8f, 0.1f);
     upperArm1->move_to(0.5f, 0.5f, 0.0f);
     upperArm1->scale(0.5f, 0.1f, 0.1f);
-    upperArm1->set_offset(vec3(0.25f, 0.0f, 0.0f));
+    upperArm1->set_offset(vec3(0.25f, 0.5f, 0.0f));
 
     upperArm2->set_model(mod);
     //eng->add_entity(upperArm2);
@@ -62,14 +62,14 @@ void Sandbox::place_ent(Engine* eng)
     upperArm2->set_color(0.1f, 0.8f, 0.1f);
     upperArm2->move_to(-0.5f, 0.5f, 0.0f);
     upperArm2->scale(0.5f, 0.1f, 0.1f);
-    upperArm2->set_offset(vec3(-0.25f, 0.0f, 0.0f));
+    upperArm2->set_offset(vec3(-0.25f, 0.5f, 0.0f));
 
     foreArm1->set_model(mod);
     //eng->add_entity(foreArm1);
     foreArm1->set_parent(upperArm1);
     foreArm1->set_color(0.8f, 0.8f, 0.1f);
     foreArm1->move_to(0.5f, 0.0f, 0.0f);
-    foreArm1->scale(0.5f, 0.1f, 0.1f);
+    foreArm1->scale(0.5f, 0.09f, 0.1f);
     foreArm1->set_offset(vec3(0.25f, 0.0f, 0.0f));
 
     foreArm2->set_model(mod);
@@ -77,36 +77,40 @@ void Sandbox::place_ent(Engine* eng)
     foreArm2->set_parent(upperArm2);
     foreArm2->set_color(0.8f, 0.8f, 0.1f);
     foreArm2->move_to(-0.5f, 0.0f, 0.0f);
-    foreArm2->scale(0.5f, 0.1f, 0.1f);
-    foreArm2->set_offset(vec3(-0.75f, 0.0f, 0.0f));
+    foreArm2->scale(0.5f, 0.09f, 0.1f);
+    foreArm2->set_offset(vec3(-0.2f, 0.0f, 0.0f));
 
     upperLeg1->set_model(mod);
     //eng->add_entity(upperLeg1);
     upperLeg1->set_parent(torso);
     upperLeg1->set_color(0.1f, 0.8f, 0.1f);
-    upperLeg1->move_to(0.2f, -0.8f, 0.0f);
+    upperLeg1->move_to(0.19f, -0.8f, 0.0f);
     upperLeg1->scale(0.1f, 0.6f, 0.1f);
+    upperLeg1->set_offset(vec3(0.0f, -0.5f, 0.0f));
 
     upperLeg2->set_model(mod);
     //eng->add_entity(upperLeg2);
     upperLeg2->set_parent(torso);
     upperLeg2->set_color(0.1f, 0.8f, 0.1f);
-    upperLeg2->move_to(-0.2f, -0.8f, 0.0f);
+    upperLeg2->move_to(-0.19f, -0.8f, 0.0f);
     upperLeg2->scale(0.1f, 0.6f, 0.1f);
+    upperLeg2->set_offset(vec3(0.0f, -0.5f, 0.0f));
 
     foreLeg1->set_model(mod);
     //eng->add_entity(foreLeg1);
     foreLeg1->set_parent(upperLeg1);
     foreLeg1->set_color(0.8f, 0.8f, 0.1f);
-    foreLeg1->move_to(0.2f, -1.4f, 0.0f);
-    foreLeg1->scale(0.1f, 0.6f, 0.1f);
+    foreLeg1->move_to(0.0f, -0.6f, 0.0f);
+    foreLeg1->scale(0.09f, 0.6f, 0.1f);
+    foreLeg1->set_offset(vec3(0.0f, -0.3f, 0.0f));
 
     foreLeg2->set_model(mod);
     //eng->add_entity(foreLeg2);
     foreLeg2->set_parent(upperLeg2);
     foreLeg2->set_color(0.8f, 0.8f, 0.1f);
-    foreLeg2->move_to(-0.2f, -1.4f, 0.0f);
-    foreLeg2->scale(0.1f, 0.6f, 0.1f);
+    foreLeg2->move_to(0.0f, -0.6f, 0.0f);
+    foreLeg2->scale(0.09f, 0.6f, 0.1f);
+    foreLeg2->set_offset(vec3(0.0f, -0.3f, 0.0f));
 
     Entity* light = new Entity();
     light->set_model(lightMod);

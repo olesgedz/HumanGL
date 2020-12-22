@@ -19,36 +19,26 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
     model = translate(model, ent->position);
     model = rotate(model, ent->angle);
 
-    //model = translate(model, -1 * ent->parent->positionOffset);
-
-    //model = translate(model, ent->parent->positionOffset);
     mat4 ani_model = mat4(1.0f);
     if (ent->ID == 2)
     {
         model = translate(model, -1 * ent->positionOffset);
-
-        ani_model = animator->animations["run"][1].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
-        model = model * ani_model;
-        model = translate(model, ent->positionOffset);
-}
-    if (ent->ID == 3)
-    {
-        model = translate(model, -1 * ent->positionOffset);
-
-        ani_model = animator->animations["run"][1].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+        ani_model = animator->animations["run"][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
         model = model * ani_model;
         model = translate(model, ent->positionOffset);
     }
+    if (ent->ID == 4)
+    {
+        model = translate(model, -1 * ent->positionOffset);
+        ani_model = animator->animations["run"][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+        model = model * ani_model;
+        model = translate(model, ent->positionOffset);
+    }
+
     model = model * par_model;
     par_model = model;
     model = scale(model, ent->e_scale);
-//    if (ent->ID == 3)
-//    {
-//        model = translate(model, -1 * ent->positionOffset);
-//        ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
-//        model = model * ani_model;
-//        model = translate(model, ent->positionOffset);
-//    }
+
 
 
 
@@ -96,15 +86,14 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
         mat4 model = mat4(1.0f);
         model = translate(model, ent->position);
         model = rotate(model, ent->angle);
-
+        // model = translate(model, ent->position);
         mat4 ani_model = mat4(1.0f);
-        model = translate(model, vec3(0.0f, 0.0f, 0.0f));
-        if (i == 0)
+       /* if (ent->ID == 0)
+        {
            ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time);
-        model = model * ani_model;
-        model = translate(model, -1 * vec3(0.0f, 0.0f, 0.0f));
-        // model = model * ani_model;
-        mat4 parent_mat = model;
+            model = model * ani_model;
+        }*/
+
         model = scale(model, ent->e_scale);
 
 //        glm::mat4 m = glm::mat4(1.0f);
