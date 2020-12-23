@@ -8,6 +8,7 @@
 void Render::init()
 {
 	projection = perspective(60.0f * M_PI / 180.0f, 1280.0f / 720.0f, 0.1f, 100.0f);
+    animation_key = "idle";
 }
 
 void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 par_model) {
@@ -20,20 +21,11 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
     model = rotate(model, ent->angle);
 
     mat4 ani_model = mat4(1.0f);
-    if (ent->ID == 2)
-    {
-        model = translate(model, -1 * ent->positionOffset);
-        ani_model = animator->animations["run"][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
-        model = model * ani_model;
-        model = translate(model, ent->positionOffset);
-    }
-    if (ent->ID == 4)
-    {
-        model = translate(model, -1 * ent->positionOffset);
-        ani_model = animator->animations["run"][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
-        model = model * ani_model;
-        model = translate(model, ent->positionOffset);
-    }
+    
+    model = translate(model, -1 * ent->positionOffset);
+    ani_model = animator->animations["idle"][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+    model = model * ani_model;
+    model = translate(model, ent->positionOffset);
 
     model = model * par_model;
     par_model = model;
@@ -88,11 +80,11 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
         model = rotate(model, ent->angle);
         // model = translate(model, ent->position);
         mat4 ani_model = mat4(1.0f);
-       /* if (ent->ID == 0)
+        if (ent->ID == 0)
         {
-           ani_model = animator->animations["run"][0].GetAnimationMatrix(*ent, Engine::delta_time);
+           ani_model = animator->animations["idle"][0].GetAnimationMatrix(*ent, Engine::delta_time);
             model = model * ani_model;
-        }*/
+        }
 
         model = scale(model, ent->e_scale);
 

@@ -118,10 +118,11 @@ void Engine::run_engine()
 
         ImGui::Text("Use buttons to change animation"); // Display some text (you can use a format strings too)
         if (ImGui::Button("Idle"))
-            std::cout << "Idle anim" << std::endl;
-        ImGui::Button("Run");
-        ImGui::Button("Jump");
-		ImGui::Render();
+  			rend.animation_key = "idle";
+       	if (ImGui::Button("Run"))
+			rend.animation_key = "run";
+       	if (ImGui::Button("Jump"))
+			rend.animation_key = "jump";
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window);
