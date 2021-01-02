@@ -73,10 +73,6 @@ void Engine::init_engine(int width, int height)
 
 void Engine::run_engine()
 {
-    bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 	old_time = glfwGetTime();
 	while (!glfwWindowShouldClose(window))
 	{
@@ -98,7 +94,6 @@ void Engine::run_engine()
 		ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        ImGui::Begin("3D Model");
 		cam.speed = 8.0f * delta_time;
 		if (controls.keys[GLFW_KEY_W])
 			cam.pos = cam.pos + cam.speed * cam.front;
@@ -116,7 +111,7 @@ void Engine::run_engine()
 		rend.draw_scene(&animator, &scene, &cam);
 		//rend.draw_pbr(&scene, &cam);
 
-
+        ImGui::Begin("HumanGL");
         ImGui::Text("Use buttons to change animation"); // Display some text (you can use a format strings too)
         if (ImGui::Button("Idle"))
   			rend.animation_key = "idle";
