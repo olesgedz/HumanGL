@@ -98,6 +98,7 @@ void Engine::run_engine()
 		ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+        ImGui::Begin("3D Model");
 		cam.speed = 8.0f * delta_time;
 		if (controls.keys[GLFW_KEY_W])
 			cam.pos = cam.pos + cam.speed * cam.front;
@@ -123,6 +124,10 @@ void Engine::run_engine()
 			rend.animation_key = "run";
        	if (ImGui::Button("Jump"))
 			rend.animation_key = "jump";
+        if (ImGui::Button("Praise"))
+            rend.animation_key = "praise";
+        ImGui::End();
+        ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window);

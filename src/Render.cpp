@@ -23,7 +23,7 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
     mat4 ani_model = mat4(1.0f);
     
     model = translate(model, -1 * ent->positionOffset);
-    ani_model = animator->animations["idle"][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
+    ani_model = animator->animations[animation_key][ent->ID].GetAnimationMatrix(*ent, Engine::delta_time) * ani_model;
     model = model * ani_model;
     model = translate(model, ent->positionOffset);
 
@@ -72,9 +72,6 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
         //glBindTexture(GL_TEXTURE_2D, mod->texture);
         glBindVertexArray(mod->vao);
 
-//        if (i == 2)
-//            ent->rotate(0.0f, 20.0f * Engine::delta_time, 0.0f);
-
         mat4 model = mat4(1.0f);
         model = translate(model, ent->position);
         model = rotate(model, ent->angle);
@@ -82,28 +79,11 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
         mat4 ani_model = mat4(1.0f);
         if (ent->ID == 0)
         {
-           ani_model = animator->animations["idle"][0].GetAnimationMatrix(*ent, Engine::delta_time);
-            model = model * ani_model;
+           ani_model = animator->animations[animation_key][0].GetAnimationMatrix(*ent, Engine::delta_time);
+           model = model * ani_model;
         }
 
         model = scale(model, ent->e_scale);
-
-//        glm::mat4 m = glm::mat4(1.0f);
-//        glm::vec3 p = glm::vec3(ent->position.x, ent->position.y, ent->position.z);
-//        glm::vec3 s = glm::vec3(ent->e_scale.x, ent->e_scale.y, ent->e_scale.z);
-//        m = glm::translate(m, p);
-//        m = glm::rotate(m, glm::radians(ent->angle.x), glm::vec3(1.0f, 0.0f, 0.0f));
-//        m = glm::rotate(m, glm::radians(ent->angle.y), glm::vec3(0.0f, 1.0f, 0.0f));
-//        m = glm::rotate(m, glm::radians(ent->angle.z), glm::vec3(0.0f, 0.0f, 1.0f));
-//        m = glm::scale(m, s);
-//        if (i == 2) {
-//            for (int i = 0; i < 16; ++i)
-//                std::cout << model.mat[i] << " ";
-//            std::cout << "\n";
-//            for (int i = 0; i < 16; ++i)
-//                std::cout << glm::value_ptr(m)[i] << " ";
-//            std::cout << "\n";
-//        }
 
 		unsigned int model_loc = glGetUniformLocation(mod->shader_id, "u_M");
 		glUniformMatrix4fv(model_loc, 1, GL_FALSE, model.mat);
@@ -128,7 +108,7 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 
         int child_numb = ent->childrens.size();
         for (int j = 0; j < child_numb; ++j)
-            draw_child(ent->childrens[j], animator, scene, cam, parent_mat);
+            draw_child(ent->childrens[j], animator, scene, cam, ani_model);
 	}
 }
 
