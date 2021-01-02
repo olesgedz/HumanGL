@@ -28,7 +28,7 @@ void Engine::init_engine(int width, int height)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	window = glfwCreateWindow(width, height, "42 run", NULL, NULL);
+	window = glfwCreateWindow(width, height, "HumanGL", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -126,6 +126,7 @@ void Engine::run_engine()
 			rend.animation_key = "jump";
         if (ImGui::Button("Praise"))
             rend.animation_key = "praise";
+        ImGui::SliderFloat("float", &rend.scaler, 1.0f, 3.0f);
         ImGui::End();
         ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

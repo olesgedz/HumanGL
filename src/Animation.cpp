@@ -96,9 +96,6 @@ mat4 Animation::GetAnimationMatrix(const Entity& entity, float time)
 
 	if (timeFromStart >= duration)
 		timeFromStart = 0;
-	std::cout << timeFromStart << std::endl;
-	std::cout << "Duration " << duration << std::endl;
-	std::cout << "offset " << entity.positionOffset.x << std::endl;
 	int key = FindKey();
 
 	mat4 result = mat4(1.0f);

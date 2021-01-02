@@ -1,6 +1,5 @@
 #include "render.h"
 #include "glad.h"
-#include <string>
 #include <iostream>
 #include "glm/glm.hpp"
 #include "engine.h"
@@ -11,8 +10,8 @@ void Render::init()
     animation_key = "idle";
 }
 
-void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 par_model) {
-    std::cout << "draw child" << std::endl;
+void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera *cam, mat4 par_model)
+{
     Model *mod = ent->mod;
     glUseProgram(mod->shader_id);
     glBindVertexArray(mod->vao);
@@ -31,16 +30,12 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
     par_model = model;
     model = scale(model, ent->e_scale);
 
-
-
-
     unsigned int model_loc = glGetUniformLocation(mod->shader_id, "u_M");
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model.mat);
     unsigned int view_loc = glGetUniformLocation(mod->shader_id, "u_V");
     glUniformMatrix4fv(view_loc, 1, GL_FALSE, cam->view.mat);
     unsigned int proj_loc = glGetUniformLocation(mod->shader_id, "u_P");
     glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection.mat);
-
     glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
     glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
     glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
@@ -61,28 +56,24 @@ void    Render::draw_child(Entity* ent, Animator *animator, Scene *scene, Camera
 
 void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 {
-   // std::cout << "draw scene" << std::endl;
 	int length = scene->ents.size();
 
 	for (int i = 0; i < length; ++i) {
        Entity *ent = scene->ents[i];
         Model *mod = ent->mod;
         glUseProgram(mod->shader_id);
-        //glActiveTexture(GL_TEXTURE0);
-        //glBindTexture(GL_TEXTURE_2D, mod->texture);
         glBindVertexArray(mod->vao);
 
         mat4 model = mat4(1.0f);
         model = translate(model, ent->position);
         model = rotate(model, ent->angle);
-        // model = translate(model, ent->position);
         mat4 ani_model = mat4(1.0f);
         if (ent->ID == 0)
         {
            ani_model = animator->animations[animation_key][0].GetAnimationMatrix(*ent, Engine::delta_time);
+           ani_model = scale(ani_model, vec3(1.0f, 1.0f, 1.0f) * scaler);
            model = model * ani_model;
         }
-
         model = scale(model, ent->e_scale);
 
 		unsigned int model_loc = glGetUniformLocation(mod->shader_id, "u_M");
@@ -91,7 +82,6 @@ void Render::draw_scene(Animator *animator, Scene *scene, Camera *cam)
 		glUniformMatrix4fv(view_loc, 1, GL_FALSE, cam->view.mat);
 		unsigned int proj_loc = glGetUniformLocation(mod->shader_id, "u_P");
 		glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection.mat);
-
         glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
         glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
         glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
@@ -162,12 +152,6 @@ void	Render::draw_skybox(Skybox *skybox, Camera* cam)
 	glUseProgram(skybox->shader_id);
 	mat3 tmp = mat3(cam->view);
 	mat4 view = mat4(tmp);
-//    for (int i = 0; i < 16; ++i)
-//        std::cout << cam->view.mat[i] << " ";
-//    std::cout << "\n";
-//	for (int i = 0; i < 16; ++i)
-//	    std::cout << view.mat[i] << " ";
-//    std::cout << "\n";
     unsigned int view_loc = glGetUniformLocation(skybox->shader_id, "u_V");
 	glUniformMatrix4fv(view_loc, 1, GL_FALSE, view.mat);
 	unsigned int proj_loc = glGetUniformLocation(skybox->shader_id, "u_P");

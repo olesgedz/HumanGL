@@ -53,7 +53,7 @@ void Sandbox::place_ent(Engine* eng)
     upperArm1->set_parent(torso);
     upperArm1->set_color(0.1f, 0.8f, 0.1f);
     upperArm1->move_to(0.5f, 0.5f, 0.0f);
-    upperArm1->scale(0.5f, 0.1f, 0.1f);
+    upperArm1->scale(0.5f, 0.099f, 0.099f);
     upperArm1->set_offset(vec3(0.25f, 0.5f, 0.0f));
 
     upperArm2->set_model(mod);
@@ -61,7 +61,7 @@ void Sandbox::place_ent(Engine* eng)
     upperArm2->set_parent(torso);
     upperArm2->set_color(0.1f, 0.8f, 0.1f);
     upperArm2->move_to(-0.5f, 0.5f, 0.0f);
-    upperArm2->scale(0.5f, 0.1f, 0.1f);
+    upperArm2->scale(0.5f, 0.099f, 0.099f);
     upperArm2->set_offset(vec3(-0.25f, 0.5f, 0.0f));
 
     foreArm1->set_model(mod);

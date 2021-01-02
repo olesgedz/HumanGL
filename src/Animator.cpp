@@ -29,26 +29,26 @@ Animator::Animator()
 	animations["idle"][1].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// arm 1
-	animations["idle"][2].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][2].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][2].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][2].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["idle"][2].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, -80), vec3(1, 1, 1)));
+	animations["idle"][2].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, -80), vec3(1, 1, 1)));
+	animations["idle"][2].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, -80), vec3(1, 1, 1)));
+	animations["idle"][2].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, -80), vec3(1, 1, 1)));
 
-	animations["idle"][3].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][3].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][3].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][3].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["idle"][3].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, -10, 0), vec3(1, 1, 1)));
+	animations["idle"][3].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, -10, 0), vec3(1, 1, 1)));
+	animations["idle"][3].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, -10, 0), vec3(1, 1, 1)));
+	animations["idle"][3].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, -10, 0), vec3(1, 1, 1)));
 
 	// arm 2
-	animations["idle"][4].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][4].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][4].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][4].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["idle"][4].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 80), vec3(1, 1, 1)));
+	animations["idle"][4].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 80), vec3(1, 1, 1)));
+	animations["idle"][4].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 80), vec3(1, 1, 1)));
+	animations["idle"][4].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 80), vec3(1, 1, 1)));
 
-	animations["idle"][5].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][5].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][5].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["idle"][5].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["idle"][5].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 10, 0), vec3(1, 1, 1)));
+	animations["idle"][5].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 10, 0), vec3(1, 1, 1)));
+	animations["idle"][5].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 10, 0), vec3(1, 1, 1)));
+	animations["idle"][5].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 10, 0), vec3(1, 1, 1)));
 
 	// leg 1
 	animations["idle"][6].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(-5, 0, 0), vec3(1, 1, 1)));
@@ -133,117 +133,117 @@ Animator::Animator()
 	// torso
 	animations["jump"][0].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][0].AddAnimationKey(new AnimationKey(0.5f, vec3(0, -0.15f, 0), vec3(10, 0, 0), vec3(1, 1, 1)));
-	animations["jump"][0].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 1.0f, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][0].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 1.0f, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][0].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// head
 	animations["jump"][1].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][1].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["jump"][1].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][1].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][1].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// arm 1
 	animations["jump"][2].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, -85), vec3(1, 1, 1)));
 	animations["jump"][2].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, -75), vec3(1, 1, 1)));
 	animations["jump"][2].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, -75), vec3(1, 1, 1)));
-	animations["jump"][2].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, -85), vec3(1, 1, 1)));
+	animations["jump"][2].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, -85), vec3(1, 1, 1)));
 	animations["jump"][2].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, -85), vec3(1, 1, 1)));
 
 	animations["jump"][3].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][3].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, -90, 0), vec3(1, 1, 1)));
 	animations["jump"][3].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, -90, 0), vec3(1, 1, 1)));
-	animations["jump"][3].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][3].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][3].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// arm 2
 	animations["jump"][4].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 85), vec3(1, 1, 1)));
 	animations["jump"][4].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 75), vec3(1, 1, 1)));
 	animations["jump"][4].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 75), vec3(1, 1, 1)));
-	animations["jump"][4].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 85), vec3(1, 1, 1)));
+	animations["jump"][4].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 85), vec3(1, 1, 1)));
 	animations["jump"][4].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 85), vec3(1, 1, 1)));
 
 	animations["jump"][5].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][5].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 90, 0), vec3(1, 1, 1)));
 	animations["jump"][5].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 90, 0), vec3(1, 1, 1)));
-	animations["jump"][5].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][5].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][5].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// leg 1
 	animations["jump"][6].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][6].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(-30, 0, 0), vec3(1, 1, 1)));
-	animations["jump"][6].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][6].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][6].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	animations["jump"][7].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][7].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(30, 0, 0), vec3(1, 1, 1)));
-	animations["jump"][7].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][7].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][7].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// leg 2
 	animations["jump"][8].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][8].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(-30, 0, 0), vec3(1, 1, 1)));
-	animations["jump"][8].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][8].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][8].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	animations["jump"][9].AddAnimationKey(new AnimationKey(1.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][9].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(30, 0, 0), vec3(1, 1, 1)));
-	animations["jump"][9].AddAnimationKey(new AnimationKey(0.5f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["jump"][9].AddAnimationKey(new AnimationKey(0.7f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["jump"][9].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// praise anim
 	// torso
-	animations["praise"][0].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][0].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][0].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][0].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][0].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][0].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][0].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// head
-	animations["praise"][1].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(20, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][1].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][1].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(20, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][1].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][1].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(-20, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][1].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(-20, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][1].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// arm 1
-	animations["praise"][2].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, -60), vec3(1, 1, 1)));
-	animations["praise"][2].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(-90, 0, -60), vec3(1, 1, 1)));
+	animations["praise"][2].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, -60), vec3(1, 1, 1)));
+	animations["praise"][2].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(-90, 0, -60), vec3(1, 1, 1)));
+	animations["praise"][2].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(-180, 0, -60), vec3(1, 1, 1)));
 	animations["praise"][2].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(-180, 0, -60), vec3(1, 1, 1)));
-	animations["praise"][2].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, -60), vec3(1, 1, 1)));
 
-	animations["praise"][3].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][3].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][3].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][3].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][3].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][3].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][3].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// arm 2
-	animations["praise"][4].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 60), vec3(1, 1, 1)));
-	animations["praise"][4].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(-90, 0, 60), vec3(1, 1, 1)));
+	animations["praise"][4].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 60), vec3(1, 1, 1)));
+	animations["praise"][4].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(-90, 0, 60), vec3(1, 1, 1)));
+	animations["praise"][4].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(-180, 0, 60), vec3(1, 1, 1)));
 	animations["praise"][4].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(-180, 0, 60), vec3(1, 1, 1)));
-	animations["praise"][4].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 60), vec3(1, 1, 1)));
 
-	animations["praise"][5].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][5].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][5].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][5].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][5].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][5].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][5].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// leg 1
-	animations["praise"][6].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][6].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][6].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][6].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][6].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][6].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][6].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
-	animations["praise"][7].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][7].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][7].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][7].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][7].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][7].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][7].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
 	// leg 2
-	animations["praise"][8].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][8].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][8].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][8].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][8].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][8].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][8].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 
-	animations["praise"][9].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][9].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
-	animations["praise"][9].AddAnimationKey(new AnimationKey(4.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][9].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][9].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
+	animations["praise"][9].AddAnimationKey(new AnimationKey(2.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 	animations["praise"][9].AddAnimationKey(new AnimationKey(0.0f, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 1, 1)));
 }
