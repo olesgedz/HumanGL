@@ -28,7 +28,7 @@ void Engine::init_engine(int width, int height)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	window = glfwCreateWindow(width, height, "42 run", NULL, NULL);
+	window = glfwCreateWindow(width, height, "HumanGL", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -73,10 +73,6 @@ void Engine::init_engine(int width, int height)
 
 void Engine::run_engine()
 {
-    bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 	old_time = glfwGetTime();
 	while (!glfwWindowShouldClose(window))
 	{
@@ -115,13 +111,19 @@ void Engine::run_engine()
 		rend.draw_scene(&animator, &scene, &cam);
 		//rend.draw_pbr(&scene, &cam);
 
-
+        ImGui::Begin("HumanGL");
         ImGui::Text("Use buttons to change animation"); // Display some text (you can use a format strings too)
         if (ImGui::Button("Idle"))
-            std::cout << "Idle anim" << std::endl;
-        ImGui::Button("Run");
-        ImGui::Button("Jump");
-		ImGui::Render();
+  			rend.animation_key = "idle";
+       	if (ImGui::Button("Run"))
+			rend.animation_key = "run";
+       	if (ImGui::Button("Jump"))
+			rend.animation_key = "jump";
+        if (ImGui::Button("Praise"))
+            rend.animation_key = "praise";
+        ImGui::SliderFloat("float", &rend.scaler, 1.0f, 3.0f);
+        ImGui::End();
+        ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window);

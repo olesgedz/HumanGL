@@ -171,3 +171,12 @@ mat4    scale(mat4 matrix, vec3 vector)
     matrix = m1 * matrix;
     return matrix;
 }
+vec3 operator *(mat4 matrix, vec3 vector)
+{
+    vec3 result;
+
+    result.x = matrix.mat[0] * vector.x + matrix.mat[4] * vector.y + matrix.mat[8] * vector.z + matrix.mat[12] * 1;
+    result.y = matrix.mat[1] * vector.x + matrix.mat[5] * vector.y + matrix.mat[9] * vector.z + matrix.mat[13] * 1;
+    result.z = matrix.mat[2] * vector.x + matrix.mat[6] * vector.y + matrix.mat[10] * vector.z + matrix.mat[14] * 1;
+
+}

@@ -122,5 +122,6 @@ mat4    perspective(float fov, float ratio, float near, float far);
 mat4    translate(mat4 matrix, vec3 vector);
 mat4    rotate(mat4 matrix, vec3 vector);
 mat4    scale(mat4 matrix, vec3 vector);
+vec3 operator *(mat4 matrix, vec3 vector);
 
 #endif //HUMAGL_MATHS_H
